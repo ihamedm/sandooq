@@ -1,0 +1,15 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=root
+Group=nginx
+WorkingDirectory=/home/app/core
+ExecStart=/home/app/venv/bin/gunicorn --access-logfile '/home/app/log/step.gunicorn.access.log' --error-logfile '/home/app/log/step.gunicorn.error.log' --capture-output --log-level debug --workers 3 --bind unix:/home/app/backend/core.sock core.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+
+#gunicorn --access-logfile '-' --capture-output --log-level debug --workers 1 --bind unix:/home/app/core/core.sock core.wsgi:application
