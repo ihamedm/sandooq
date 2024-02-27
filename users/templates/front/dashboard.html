@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user_data.firstname }} {{ user_data.lastname }}</title>
+    <link rel="stylesheet" href="{% static 'css/front-dashboard.css' %}">
+</head>
+<body>
+
+<header>
+
+    <div class="container">
+        <div class="user-info">
+            <div>{{ user_data.firstname }} عزیز خوش اومدی</div>
+            <div><a href="{% url 'logout' %}">خروج</a></div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="next-payment">
+        کل مبلغ پرداختی ماه آینده :  <span class="number" style="font-weight: bold">{{ next_paid_amount }}</span> تومان
+
+        <ul>
+            <li class="next-installments">
+            {{ first_unpaid_installments|length }}
+                    قسط
+
+                {% for installment in first_unpaid_installments %}
+                    <span class="number">{{ installment.amount }}</span>
+                {% endfor %}
+
+             تومانی
+            </li>
+
+            <li class="next-fix-monthly">
+                {{ shares|length }}
+                شهریه
+                <span class="number">{{ monthly_fix_amount_assets }}</span>
+                تومانی
+            </li>
+        </ul>
+
+
+    </div>
+
+    <div class="report-data">
+        <ul>
+            <li>تعداد سهم  <span class="text-bold">{{ report_data.shares|length }}</span> </li>
+            <li>دارایی هر سهم  <span class="text-bold number">{{ report_data.share_asset }}</span> تومان</li>
+            <li>کل وام دریافتی  <span class="text-bold number">{{ report_data.total_loans_amount }}</span> تومان</li>
+            <li>کل بدهی  <span class="text-bold number">{{ report_data.unpaid_installments_amount }}</span> تومان</li>
+            <li>وام های تسویه شده  <span class="text-bold number">{{ report_data.total_loans_checkouted }}</span> وام</li>
+
+        </ul>
+    </div>
+
+
+    {% for loan in loans %}
+    <div class="table-wrapper close">
+
+        <table>
+            <caption class="table-caption">اقساط وام سهم {{ loan.share.order }} -
+            <span class="number">{{ loan.amount }}</span> تومان
+            </caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>سررسید</th>
+                    <th>مبلغ</th>
+                    <th>وضعیت</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for installment in loan.modified_installments %}
+                <tr {% if installment.paid is True %} class="paid" {% endif %}>
+                    <td>{{ installment.installment_number }}</td>
+                    <td>{{ installment.due_date }}</td>
+                    <td><span class="number">{{ installment.amount }}</span></td>
+                    <td>{% if installment.paid is True %}<img class="paid" src="{% static 'img/down.svg' %}">{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endfor %}
+
+</div>
+
+
+<script>
+    // Function to comma separate numbers
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    // Get all elements with class "number"
+    var elements = document.querySelectorAll('.number');
+
+    // Iterate over the elements and comma separate their text content
+    elements.forEach(function(element) {
+        var number = parseFloat(element.textContent.replace(/,/g, '')); // Remove existing commas
+        if (!isNaN(number)) { // Check if the content is a valid number
+            element.textContent = numberWithCommas(number); // Update the content with comma separated number
+        }
+    });
+
+    // Get all elements with the class 'table-wrapper'
+    var tableWrappers = document.querySelectorAll('.table-wrapper');
+
+    // Loop through each table wrapper
+    tableWrappers.forEach(function(wrapper) {
+        // Get the caption element inside the current table wrapper
+        var caption = wrapper.querySelector('caption');
+
+        // Add click event listener to the caption
+        caption.addEventListener('click', function() {
+            // Toggle the 'close' class on the table wrapper
+            wrapper.classList.toggle('close');
+        });
+    });
+</script>
+</body>
+</html>

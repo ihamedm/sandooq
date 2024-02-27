@@ -1,0 +1,196 @@
+@font-face {
+  font-family: IRANYekanX;
+  font-style: normal;
+  font-weight: 300;
+  url('../fonts/IRANYekanX-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: IRANYekanX;
+  font-style: normal;
+  font-weight: 500;
+  url('../fonts/IRANYekanX-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: IRANYekanX;
+  font-style: normal;
+  font-weight: 900;
+  url('../fonts/IRANYekanX-Black.woff2') format('woff2');
+}
+@font-face {
+  font-family: IRANYekanX;
+  font-style: normal;
+  font-weight: bold;
+  url('../afonts/IRANYekanX-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: IRANYekanX;
+  font-style: normal;
+  font-weight: normal;
+  url('../fonts/IRANYekanX-Regular.woff2') format('woff2');
+}
+.fa-num {
+    -moz-font-feature-settings: "ss02";
+    -webkit-font-feature-settings: "ss02";
+    font-feature-settings: "ss02";
+  }
+html{
+    margin: 0;
+    padding: 0;
+}
+
+*{
+    font-family: IRANYekanX, serif !important;
+    -moz-font-feature-settings: "ss02";
+    -webkit-font-feature-settings: "ss02";
+    font-feature-settings: "ss02";
+}
+body {
+    font-family: IRANYekanX, sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    direction: rtl;
+    text-align: right;
+    color: #334155;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    background: #f8fafc;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    padding: 16px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+header{
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info a {
+    color: red;
+    font-size: 12px;
+}
+
+.currency{
+    width: 100px;
+}
+.paid img{
+    width: 16px;
+    height: 16px;
+}
+
+.table-wrapper{
+    overflow:hidden;
+    border-radius: 8px;
+    border: 1px solid #64748b;
+    margin-bottom: 16px;
+    transition: height 500ms;
+    height: auto;
+    position: relative;
+}
+.table-wrapper:after{
+    position: absolute;
+    content: "-";
+    display: block;
+    font-weight: bold;
+    left: 16px;
+    top: 10px;
+    font-size: 16px;
+}
+.table-wrapper.close{
+    height: 36px;
+}
+.table-wrapper.close:after{
+    content: "+";
+}
+
+table {
+    width: 100%;
+  /*border: solid 1px #DDEEEE;*/
+  border-collapse: collapse;
+  border-spacing: 0;
+    font-size: 12px;
+}
+table caption{
+    background: #cbd5e1;
+    color: #1e293b;
+    font-weight: 500;
+    padding: 10px;
+}
+
+table thead th {
+  background-color: #e2e8f0;
+  border: solid 1px #e2e8f0;
+  color: #334155;
+  padding: 10px;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+table tbody td {
+  border: solid 1px #DDEEEE;
+  color: #333;
+  padding: 6px;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+table tbody tr:last-child td{
+  border-bottom: none;
+}
+table tbody tr.paid {
+  background-color: #EEF7EE;
+}
+
+table tbody td {
+  border-left: none;
+  border-right: none;
+}
+
+.next-installments span:after{
+    content: " , ";
+}
+.next-installments span:last-child:after{
+    content: "";
+}
+
+.next-payment{
+    background: #f0f9ff;
+    border:1px solid #3b82f6;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 12px;
+    line-height: 1.5rem;
+    color: #1e40af;
+}
+.text-bold{
+    font-weight: bold;
+}
+.report-data{
+    background: #ecfdf5;
+    border:1px solid #34d399;
+    color: #047857;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 12px;
+    line-height: 1.5rem;
+}

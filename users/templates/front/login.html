@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: "Vazirmatn", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: 500;
+          font-style: normal;
+        }
+        /* Style the wrapper */
+.wrapper {
+  width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Style the form */
+.form-signin {
+  background-color: #f7f7f7;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+    width: 80vw;
+    max-width: 300px;
+}
+.form-signin p label{
+    display: block;
+    text-align: right;
+    direction: rtl;
+}
+/* Style the heading */
+.form-signin h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style the form fields */
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Style the submit button */
+.form-signin button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the submit button on hover */
+.form-signin button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+  .wrapper {
+    max-width: 100%;
+  }
+
+  .form-signin {
+    padding: 10px;
+  }
+}
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <form class="form-signin" method="post">
+      <h2 class="form-signin-heading">صندوق دادا</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+      <button class="btn btn-lg btn-primary btn-block" type="submit">ورود</button>
+    </form>
+  </div>
+</body>
+</html>
